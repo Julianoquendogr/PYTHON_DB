@@ -27,5 +27,4 @@ print("Se insertaron : " + str(sheet.nrows - 1) + " registros en la tabla ZONA")
 cursor.close()
 conn.close()
 
-########################################################################################################
 

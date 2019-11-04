@@ -19,7 +19,7 @@ for i in range(1, sheet.nrows):
     Desc_Pais         = sheet.cell(i, 3).value
 
     query = '''INSERT INTO CIUDAD (Cod_Ciudad, Desc_Ciudad, Desc_Departamento, Desc_Pais) VALUES (?,?,?,?)'''
-    #Cod_Cuidad = int(Cod_Cuidad)
+   
     values = (Cod_Ciudad, Desc_Ciudad, Desc_Departamento, Desc_Pais)
     cursor.execute(query, values)
     conn.commit()
