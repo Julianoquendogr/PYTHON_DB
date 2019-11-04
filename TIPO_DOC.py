@@ -1,26 +1,34 @@
+###############################################################################################
+#       FUNCIÓN QUE INSERTA DATOS DESDE .XLSX FILE EN LA TABLA DE TIPO_DOC EN SQL SERVER
+###############################################################################################
+
 import xlrd
 import pyodbc
 
-book = xlrd.open_workbook(r'C:\\Users\\Julian\\Downloads\\TABLAS_PRUEBA_ING_DATOS.xlsx')
-sheet = book.sheet_by_name('cat_tip_doc')
+def InsertarTipo_Doc(parameter_path):
 
-conn = pyodbc.connect('Driver={SQL Server};'
-                      'Server=DESKTOP-8LT275E\SQLEXPRESS;'
-                      'Database=DB_PYTHON;'
-                      'Trusted_Connection=yes;')
+    Path = str(parameter_path)
+    book = xlrd.open_workbook(Path)
+    sheet = book.sheet_by_name('cat_tip_doc')
 
-cursor = conn.cursor()
+    conn = pyodbc.connect('Driver={SQL Server};'
+                        'Server=DESKTOP-8LT275E\SQLEXPRESS;'
+                        'Database=DB_PYTHON;'
+                        'Trusted_Connection=yes;')
 
-for i in range(1, sheet.nrows):
+    cursor = conn.cursor()
 
-    Cod_Tip_Doc        = sheet.cell(i, 0).value
-    Desc_Tip_Doc       = sheet.cell(i, 1).value
+    for i in range(1, sheet.nrows):
 
-    query = '''INSERT INTO TIPO_DOC (Cod_Tip_Doc, Desc_Tip_Doc) VALUES (?,?)'''
-    values = (Cod_Tip_Doc, Desc_Tip_Doc)
-    cursor.execute(query, values)
-    conn.commit()
+        Cod_Tip_Doc = sheet.cell(i, 0).value
+        Desc_Tip_Doc = sheet.cell(i, 1).value
 
-print("Se insertaron : " + str(sheet.nrows - 1) + " registros en la tabla TIPO_DOC")
-cursor.close()
-conn.close()
+        query = '''INSERT INTO TIPO_DOC (Cod_Tip_Doc, Desc_Tip_Doc) VALUES (?,?)'''
+        values = (Cod_Tip_Doc, Desc_Tip_Doc)
+        cursor.execute(query, values)
+        conn.commit()
+
+    print("Se insertaron : " + str(sheet.nrows - 1) +
+        " registros en la tabla TIPO_DOC")
+    cursor.close()
+    conn.close()
