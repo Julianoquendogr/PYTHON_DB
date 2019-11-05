@@ -63,8 +63,14 @@ AND CIUDAD.Cod_Ciudad IN (169008001000,169085225009);
 /*** Adicional ***/
 SELECT CIUDAD.Desc_Ciudad,ZONA.Desc_Region,SUCURSAL.Desc_Sucursal,ZONA.Desc_Pais,CLIENTES.Id,CLIENTES.Nombre_Completo,CLIENTES.Fecha_Nacimiento,
 CLIENTES.Edad FROM CIUDAD left JOIN SUCURSAL ON CIUDAD.Cod_Ciudad = CIUDAD.Cod_Ciudad left JOIN ZONA ON ZONA.Cod_Pais_Region_Zona = SUCURSAL.Cod_Pais_Region_Zona
-left JOIN CLIENTES ON CLIENTES.Cod_Sucursal = SUCURSAL.Cod_Sucursal left JOIN GENERO ON GENERO.Cod_Genero = CLIENTES.Cod_Genero left JOIN TIPO_DOC ON
+right JOIN CLIENTES ON CLIENTES.Cod_Sucursal = SUCURSAL.Cod_Sucursal left JOIN GENERO ON GENERO.Cod_Genero = CLIENTES.Cod_Genero left JOIN TIPO_DOC ON
 TIPO_DOC.Cod_Tip_Doc = CLIENTES.Cod_Genero WHERE CLIENTES.Id in (select id from CLIENTES where Nombre_Completo LIKE '%Juan%Gomez%');
 
+
+SELECT CLIENTES.Nombre_Completo,CLIENTES.Id,CLIENTES.Fecha_Nacimiento,CLIENTES.Edad FROM CIUDAD left JOIN SUCURSAL ON CIUDAD.Cod_Ciudad = CIUDAD.Cod_Ciudad left JOIN ZONA ON ZONA.Cod_Pais_Region_Zona = SUCURSAL.Cod_Pais_Region_Zona
+right JOIN CLIENTES ON CLIENTES.Cod_Sucursal = SUCURSAL.Cod_Sucursal left JOIN GENERO ON GENERO.Cod_Genero = CLIENTES.Cod_Genero left JOIN TIPO_DOC ON
+TIPO_DOC.Cod_Tip_Doc = CLIENTES.Cod_Genero WHERE CLIENTES.Id in (select id from CLIENTES where Nombre_Completo LIKE '%Juan%Gomez%')
+group by CLIENTES.Nombre_Completo,CLIENTES.Id,CLIENTES.Fecha_Nacimiento,CLIENTES.Edad;
 /***(ciudad, región, sucursal, zona, país, nit, nombre completo, fecha_nacimiento,
+
 ingresos)***/
