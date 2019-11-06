@@ -23,6 +23,10 @@ def InsertarClientes(parameter_path):
 
     cursor = conn.cursor()
 
+    #Creación de archivos .txt para informes
+    f = open("Revisar_DIA.txt","w+")
+    d = open("Revisar_MES.txt","w+")
+
     Nombre = ""
     Apellido = ""
 
@@ -45,8 +49,11 @@ def InsertarClientes(parameter_path):
         dia  = Edad[6:8]
         if mes == '02' and dia == '29':
             dia = '28'
+            #Llenado de .txt
+            f.write("Nombre :"+ str(Nombre_Completo) +"Documento :" + str(Id) + '\n')
         elif mes == '00':
             mes = '01'
+            d.write("Nombre"+ str(Nombre_Completo) +"Documento :" + str(Id) +  '\n')
 
         Fecha = año + '-' + mes + '-' + dia
 
@@ -88,3 +95,4 @@ def InsertarClientes(parameter_path):
         " registros en la tabla CLIENTES")
     cursor.close()
     conn.close()
+    f.close()

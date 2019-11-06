@@ -4,7 +4,7 @@
 
 import pyodbc
 
-def InsertarEliminarTablas():
+def EliminarTablas():
 
     conn = pyodbc.connect('Driver={SQL Server};'
                           'Server=DESKTOP-8LT275E\SQLEXPRESS;'

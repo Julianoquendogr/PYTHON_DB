@@ -4,7 +4,7 @@ import genero
 import tipo_doc
 import sucursal
 import clientes
-import test
+import EliminarDatos
 from datetime import datetime 
 
 print("Starts at : " + str(datetime.now()))
@@ -16,6 +16,6 @@ genero.InsertarGenero()
 tipo_doc.InsertarTipo_Doc(Path)
 sucursal.InsertarSucursal(Path)
 clientes.InsertarClientes(Path)
-#test.InsertarEliminarTablas()
+#EliminarDatos.EliminarTablas()
 
 print("Ends at : " + str(datetime.now()))
